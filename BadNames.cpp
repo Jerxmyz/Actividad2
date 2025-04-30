@@ -1,41 +1,41 @@
 #include <iostream>
 
-class B {                     // ¿B de qué?
-    int a[10];                // ¿qué es “a”?
-    int i = 0;                // índice… ¿“i” de qué?
+class Proceso {                     
+    int numeros[10];             // Cambié "a" a "numeros" para saber que usaremos
+    int contador = 0;            // Cambié "i" a "contador" para que sea más entendible
 public:
-    void x(int v) {           // “x” agrega… ¿qué?  “v” tampoco dice mucho
-        a[i++] = v;
+    void agregarNumero(int valor) { // Cambié "x" a "agregarNumero" para que el usuario sepa que aqui agregaran los numeros
+        numeros[contador++] = valor; // Cambié "v" a "valor" para que sea más legible
     }
 
-    int y() {                 // “y” calcula la suma
-        int s = 0;            // “s”… ¿suma? ¿salario?
-        for (int j = 0; j < i; ++j) { // “j” → contador, pero poco claro
-            s += a[j];
+   int calcularSuma() {          // Cambié "y" a "calcularSuma" para que entendamos que se sumaran los numeros
+        int suma = 0;             // Cambié "s" a "suma" para que la variable sea acorde al problema
+        for (int j = 0; j < contador; ++j) { // "j" se mantiene como contador
+            suma += numeros[j];    // Cambié "a" a "numeros" como hice arriba, para saber que usaremos numeros
         }
-        return s;
-    }
+        return suma;
+   }
 
-    double z() {              // “z” devuelve el promedio
-        return i == 0 ? 0.0 : static_cast<double>(y()) / i;
+    double calcularPromedio() {   // Cambié "z" a "calcularPromedio" para el usuario le sea mas facil ubicar el proceso
+        return contador == 0 ? 0.0 : static_cast<double>(calcularSuma()) / contador; // "i" se mantiene como "contador".
     }
 };
 
 int main() {
-    B p;                      // Objeto “p”… ¿de qué?
-    int t;                    // “t” → ¿total? no queda claro
+    Proceso p;                   // Cambié "B" a "Proceso" para que coincida con el nuevo nombre de la clase
+    int total;                   // Cambié "t" a "total" para que sea entendible
 
     std::cout << "¿Cuántos números ingresará? ";
-    std::cin  >> t;
+    std::cin  >> total;
 
-    for (int k = 0; k < t; ++k) { // “k” → contador genérico
+    for (int k = 0; k < total; ++k) { // "k" se mantiene como contador genérico.
         std::cout << "Número: ";
-        int d;                // “d” → ¿dato? poco informativo
-        std::cin >> d;
-        p.x(d);
+        int numero;                 // Cambié "d" a "numero" para saber que se agrega el numero
+        std::cin >> numero;
+        p.agregarNumero(numero);   // Cambié "x" a "agregarNumero" para que sea más claro.
     }
 
-    std::cout << "Suma = "      << p.y() << '\n';
-    std::cout << "Promedio = "  << p.z() << '\n';
+    std::cout << "Suma = "      << p.calcularSuma() << '\n'; // Cambié "y" a "calcularSuma" para saber que es la suma
+    std::cout << "Promedio = "  << p.calcularPromedio() << '\n'; // Cambié "z" a "calcularPromedio" para saber que es el procedimiento del promedio de la suma de todos los numeros
     return 0;
 }
